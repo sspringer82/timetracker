@@ -8,6 +8,7 @@
     "react-scripts": "1.1.0"
   },
   "scripts": {
+    "backend": "json-server --watch db/database.json --port 3001",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -15,5 +16,6 @@
   },
   "devDependencies": {
     "json-server": "^0.12.1"
-  }
+  },
+  "proxy": "http://localhost:3001"
 }
