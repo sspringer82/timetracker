@@ -1,15 +1,11 @@
-const items = [
-  {
-    id: 1,
-    start: 1516705200000,
-    end: 1516708800000,
-    project: 'Test project',
-    task: 'Test task',
-  },
-];
+import { LOAD_TIMETRACK } from './timetrack.action';
 
-export const timetrackReducer = (state = { items: items }, action) => {
+const items = [];
+
+export const timetrackReducer = (state = { items }, action) => {
   switch (action.type) {
+    case LOAD_TIMETRACK:
+      return { ...state, ...{ items: action.payload.timetracks } };
     default:
       return state;
   }
