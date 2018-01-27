@@ -1,6 +1,6 @@
 import React from 'react';
 
-class TimetrackForm extends React.Component {
+export class TimetrackForm extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -12,12 +12,8 @@ class TimetrackForm extends React.Component {
     };
   }
 
-  handleChange(event) {
-    const name = event.target.name;
-    const value = event.target.value;
-    this.setState(prev => {
-      return { ...prev, [name]: value };
-    });
+  handleChange({ target: { name, value } }) {
+    this.setState(prev => ({ ...prev, [name]: value }));
   }
 
   handleSubmit(event) {
