@@ -16,6 +16,9 @@
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
     "import/prefer-default-export": 0,
-    "react/jsx-filename-extension": 0
+    "react/jsx-filename-extension": 0,
+    "arrow-parens": 0,
+    "function-paren-newline": 0,
+    "arrow-body-style": 0
   }
 }
