@@ -6,7 +6,7 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import { configureStore } from './app/configureStore';
 import { TimetrackTableContainer } from './timetrack/timetrackTable.container.component';
-import { TimetrackForm } from './timetrack/timetrackForm.component';
+import { TimetrackFormContainer } from './timetrack/timetrackForm.container.component';
 
 const store = configureStore();
 
@@ -16,7 +16,7 @@ ReactDOM.render(
       <div>
         <Route exact path="/" render={() => <Redirect to="/list" />} />
         <Route path="/list" component={TimetrackTableContainer} />
-        <Route path="/form" component={TimetrackForm} />
+        <Route path="/form" component={TimetrackFormContainer} />
       </div>
     </Router>
   </Provider>,
