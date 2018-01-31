@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export const TimetrackItem = ({ item }) => {
+export const TimetrackItem = ({ item, handleDelete }) => {
   return (
     <tr>
       <td>{item.start}</td>
@@ -8,6 +9,19 @@ export const TimetrackItem = ({ item }) => {
       <td>{item.end - item.start}</td>
       <td>{item.project}</td>
       <td>{item.task}</td>
+      <td>
+        <button onClick={() => handleDelete(item)}>delete</button>
+      </td>
     </tr>
   );
+};
+
+TimetrackItem.propTypes = {
+  item: PropTypes.shape({
+    start: PropTypes.number,
+    end: PropTypes.number,
+    project: PropTypes.string,
+    task: PropTypes.string,
+  }).isRequired,
+  handleDelete: PropTypes.func.isRequired,
 };
