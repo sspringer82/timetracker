@@ -32,7 +32,7 @@ export const deleteTimetrackEpic = action$ =>
         fetch(`/timetrack/${data.id}`, {
           method: 'delete',
         }),
-      ).pipe(map(response => deleteTimetrackSuccess(response)));
+      ).pipe(map(() => deleteTimetrackSuccess(action.payload.timetrack)));
     }),
   );
 
