@@ -1,10 +1,15 @@
 import { mergeMap, map } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromPromise';
-import { ADD_TIMETRACK, addTimetrackSuccess } from './timetrack.action';
+import {
+  ADD_TIMETRACK,
+  DELETE_TIMETRACK,
+  addTimetrackSuccess,
+  deleteTimetrackSuccess,
+} from './timetrack.action';
 
-export const addTimetrackEpic = action$ => {
-  return action$.ofType(ADD_TIMETRACK).pipe(
+export const addTimetrackEpic = action$ =>
+  action$.ofType(ADD_TIMETRACK).pipe(
     mergeMap(action => {
       const data = action.payload.timetrack;
       delete data.id;
@@ -17,4 +22,18 @@ export const addTimetrackEpic = action$ => {
       ).pipe(map(response => addTimetrackSuccess(response)));
     }),
   );
-};
+
+export const deleteTimetrackEpic = action$ =>
+  action$.ofType(DELETE_TIMETRACK).pipe(
+    mergeMap(action => {
+      const data = action.payload.timetrack;
+
+      return Observable.fromPromise(
+        fetch(`/timetrack/${data.id}`, {
+          method: 'delete',
+        }),
+      ).pipe(map(response => deleteTimetrackSuccess(response)));
+    }),
+  );
+
+// @todo combine epics here
