@@ -7,7 +7,6 @@ export const timetrackReducer = (state = { items }, action) => {
     case LOAD_TIMETRACK:
       return { ...state, ...{ items: action.payload.timetracks } };
     case DELETE_TIMETRACK_SUCCESS:
-      debugger;
       const cloneState = { ...state };
       const index = cloneState.items.findIndex(
         item => item.id === action.payload.timetrack.id,
