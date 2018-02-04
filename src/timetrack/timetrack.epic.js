@@ -17,6 +17,7 @@ export const addTimetrackEpic = action$ =>
       return Observable.fromPromise(
         fetch('/timetrack', {
           method: 'post',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data),
         }),
       ).pipe(map(response => addTimetrackSuccess(response)));
