@@ -1,4 +1,8 @@
-import { LOAD_TIMETRACK, DELETE_TIMETRACK_SUCCESS } from './timetrack.action';
+import {
+  LOAD_TIMETRACK,
+  DELETE_TIMETRACK_SUCCESS,
+  ADD_TIMETRACK_SUCCESS,
+} from './timetrack.action';
 
 const items = [];
 
@@ -6,6 +10,9 @@ export const timetrackReducer = (state = { items }, action) => {
   switch (action.type) {
     case LOAD_TIMETRACK:
       return { ...state, ...{ items: action.payload.timetracks } };
+    case ADD_TIMETRACK_SUCCESS:
+      // @todo handle response body + insert it into state
+      return state;
     case DELETE_TIMETRACK_SUCCESS:
       const cloneItems = [...items];
       const cloneState = { ...state, ...{ items: cloneItems } };

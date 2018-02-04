@@ -1,8 +1,10 @@
 import { mergeMap, map } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
+import { push } from 'react-router-redux';
 import 'rxjs/add/observable/fromPromise';
 import {
   ADD_TIMETRACK,
+  ADD_TIMETRACK_SUCCESS,
   DELETE_TIMETRACK,
   addTimetrackSuccess,
   deleteTimetrackSuccess,
@@ -23,6 +25,9 @@ export const addTimetrackEpic = action$ =>
       ).pipe(map(response => addTimetrackSuccess(response)));
     }),
   );
+
+export const addTimetrackSuccessEpic = action$ =>
+  action$.ofType(ADD_TIMETRACK_SUCCESS).pipe(map(() => push('/list')));
 
 export const deleteTimetrackEpic = action$ =>
   action$.ofType(DELETE_TIMETRACK).pipe(
