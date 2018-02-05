@@ -22,7 +22,10 @@ export const addTimetrackEpic = action$ =>
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data),
         }),
-      ).pipe(map(response => addTimetrackSuccess(response)));
+      ).pipe(
+        mergeMap(response => Observable.fromPromise(response.json())),
+        map(response => addTimetrackSuccess(response)),
+      );
     }),
   );
 
