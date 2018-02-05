@@ -7,16 +7,21 @@ import {
 const items = [];
 
 export const timetrackReducer = (state = { items }, action) => {
+  let cloneItems;
+  let cloneState;
+  let index;
   switch (action.type) {
     case LOAD_TIMETRACK:
       return { ...state, ...{ items: action.payload.timetracks } };
     case ADD_TIMETRACK_SUCCESS:
-      // @todo handle response body + insert it into state
-      return state;
+      cloneItems = [...state.items];
+      cloneItems.push(action.payload.timetrack);
+      cloneState = { ...state, ...{ items: cloneItems } };
+      return cloneState;
     case DELETE_TIMETRACK_SUCCESS:
-      const cloneItems = [...items];
-      const cloneState = { ...state, ...{ items: cloneItems } };
-      const index = cloneState.items.findIndex(
+      cloneItems = [...state.items];
+      cloneState = { ...state, ...{ items: cloneItems } };
+      index = cloneState.items.findIndex(
         item => item.id === action.payload.timetrack.id,
       );
       cloneState.items.splice(index, 1);
