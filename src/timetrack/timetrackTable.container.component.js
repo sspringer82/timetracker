@@ -4,7 +4,7 @@ import { TimetrackTable } from './timetrackTable.component';
 import { deleteTimetrack } from './timetrack.action';
 
 const mapStateToProps = state => ({
-  items: state.timetrack.items,
+  items: state.timetrack,
 });
 const mapDispatchToProps = dispatch => ({
   handleDelete: bindActionCreators(deleteTimetrack, dispatch),

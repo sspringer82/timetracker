@@ -4,28 +4,26 @@ import {
   ADD_TIMETRACK_SUCCESS,
 } from './timetrack.action';
 
-const items = [];
+const timetrack = [];
 
-export const timetrackReducer = (state = { items }, action) => {
+export const timetrackReducer = (state = timetrack, action) => {
   let cloneItems;
   let cloneState;
   let index;
   switch (action.type) {
     case LOAD_TIMETRACK:
-      return { ...state, ...{ items: action.payload.timetracks } };
+      return action.payload;
     case ADD_TIMETRACK_SUCCESS:
-      cloneItems = [...state.items];
+      cloneItems = [...state];
       cloneItems.push(action.payload.timetrack);
-      cloneState = { ...state, ...{ items: cloneItems } };
-      return cloneState;
+      return cloneItems;
     case DELETE_TIMETRACK_SUCCESS:
       cloneItems = [...state.items];
-      cloneState = { ...state, ...{ items: cloneItems } };
       index = cloneState.items.findIndex(
         item => item.id === action.payload.timetrack.id,
       );
-      cloneState.items.splice(index, 1);
-      return cloneState;
+      cloneItems.splice(index, 1);
+      return cloneItems;
     default:
       return state;
   }

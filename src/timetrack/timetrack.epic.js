@@ -13,7 +13,7 @@ import {
 export const addTimetrackEpic = action$ =>
   action$.ofType(ADD_TIMETRACK).pipe(
     mergeMap(action => {
-      const data = action.payload.timetrack;
+      const data = action.payload;
       delete data.id;
 
       return Observable.fromPromise(
@@ -35,13 +35,13 @@ export const addTimetrackSuccessEpic = action$ =>
 export const deleteTimetrackEpic = action$ =>
   action$.ofType(DELETE_TIMETRACK).pipe(
     mergeMap(action => {
-      const data = action.payload.timetrack;
+      const data = action.payload;
 
       return Observable.fromPromise(
         fetch(`/timetrack/${data.id}`, {
           method: 'delete',
         }),
-      ).pipe(map(() => deleteTimetrackSuccess(action.payload.timetrack)));
+      ).pipe(map(() => deleteTimetrackSuccess(data)));
     }),
   );
 

@@ -6,35 +6,25 @@ export const DELETE_TIMETRACK_SUCCESS = 'DELETE_TIMETRACK_SUCCESS';
 
 export const loadTimetrack = timetracks => ({
   type: LOAD_TIMETRACK,
-  payload: {
-    timetracks,
-  },
+  payload: timetracks,
 });
 
 export const addTimetrack = timetrack => ({
   type: ADD_TIMETRACK,
-  payload: {
-    timetrack,
-  },
+  payload: timetrack,
 });
 
 export const addTimetrackSuccess = timetrack => ({
   type: ADD_TIMETRACK_SUCCESS,
-  payload: {
-    timetrack,
-  },
+  payload: timetrack,
 });
 
 export const deleteTimetrack = timetrack => ({
   type: DELETE_TIMETRACK,
-  payload: {
-    timetrack,
-  },
+  payload: timetrack,
 });
 
 export const deleteTimetrackSuccess = timetrack => ({
   type: DELETE_TIMETRACK_SUCCESS,
-  payload: {
-    timetrack,
-  },
+  payload: timetrack,
 });
