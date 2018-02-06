@@ -1,8 +1,8 @@
 import React from 'react';
 
 export class TimetrackForm extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       id: 0,
       start: 0,
@@ -10,6 +10,10 @@ export class TimetrackForm extends React.Component {
       project: '',
       task: '',
     };
+  }
+
+  componentWillReceiveProps({ timetrack }) {
+    this.setState({ ...timetrack });
   }
 
   handleChange({ target: { name, value } }) {

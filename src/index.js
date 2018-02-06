@@ -17,7 +17,8 @@ ReactDOM.render(
       <div>
         <Route exact path="/" render={() => <Redirect to="/list" />} />
         <Route path="/list" component={TimetrackTableContainer} />
-        <Route path="/form" component={TimetrackFormContainer} />
+        <Route path="/new" component={TimetrackFormContainer} />
+        <Route path="/edit/:id" component={TimetrackFormContainer} />
       </div>
     </Router>
   </Provider>,
