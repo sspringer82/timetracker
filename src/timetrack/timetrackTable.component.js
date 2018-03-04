@@ -28,7 +28,7 @@ export const TimetrackTable = ({ items, handleDelete }) => {
           ))}
         </tbody>
       </table>
-      <Link to="/form">Form</Link>
+      <Link to="/new">Form</Link>
     </div>
   );
 };
