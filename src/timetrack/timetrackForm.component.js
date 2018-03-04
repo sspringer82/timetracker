@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export class TimetrackForm extends React.Component {
   constructor(props) {
@@ -74,3 +75,7 @@ export class TimetrackForm extends React.Component {
     );
   }
 }
+
+TimetrackForm.props = {
+  onCreate: PropTypes.func,
+};
