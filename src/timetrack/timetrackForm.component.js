@@ -23,7 +23,11 @@ export class TimetrackForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.onCreate(this.state);
+    if (this.state.id === 0) {
+      this.props.onCreate(this.state);
+    } else {
+      this.props.onUpdate(this.state);
+    }
   }
 
   render() {
