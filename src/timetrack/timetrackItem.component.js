@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 export const TimetrackItem = ({ item, handleDelete }) => {
   return (
@@ -11,6 +12,9 @@ export const TimetrackItem = ({ item, handleDelete }) => {
       <td>{item.task}</td>
       <td>
         <button onClick={() => handleDelete(item)}>delete</button>
+      </td>
+      <td>
+        <Link to={`/edit/${item.id}`}>edit</Link>
       </td>
     </tr>
   );
