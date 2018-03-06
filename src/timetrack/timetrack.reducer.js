@@ -19,12 +19,12 @@ export const timetrackReducer = (state = timetrack, action) => {
       cloneItems.push(action.payload);
       return cloneItems;
     case UPDATE_TIMETRACK_SUCCESS:
-    // @todo implement me
-
+      cloneItems = [...state];
+      const index = cloneItems.findIndex(item => item.id === action.payload.id);
+      cloneItems[index] = action.payload;
+      return cloneItems;
     case DELETE_TIMETRACK_SUCCESS:
-      return state.items.filter(
-        item => item.id !== action.payload.timetrack.id,
-      );
+      return state.filter(item => item.id !== action.payload.id);
     default:
       return state;
   }
