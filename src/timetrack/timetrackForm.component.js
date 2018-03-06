@@ -4,13 +4,19 @@ import PropTypes from 'prop-types';
 export class TimetrackForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      id: 0,
-      start: 0,
-      end: 0,
-      project: '',
-      task: '',
-    };
+    if (!props.timetrack) {
+      this.state = {
+        id: 0,
+        start: 0,
+        end: 0,
+        project: '',
+        task: '',
+      };
+    } else {
+      this.state = {
+        ...props.timetrack,
+      };
+    }
   }
 
   componentWillReceiveProps({ timetrack }) {
@@ -82,4 +88,6 @@ export class TimetrackForm extends React.Component {
 
 TimetrackForm.props = {
   onCreate: PropTypes.func,
+  onUpdate: PropTypes.func,
+  timetrack: PropTypes.any,
 };
