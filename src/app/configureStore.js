@@ -7,6 +7,8 @@ import { timetrackReducer } from '../timetrack/timetrack.reducer';
 import {
   addTimetrackEpic,
   addTimetrackSuccessEpic,
+  updateTimetrackEpic,
+  updateTimetrackSuccessEpic,
   deleteTimetrackEpic,
 } from '../timetrack/timetrack.epic';
 import { loadTimetrack } from '../timetrack/timetrack.action';
@@ -17,7 +19,13 @@ const rootReducer = combineReducers({
 });
 
 const epicMiddleware = createEpicMiddleware(
-  combineEpics(addTimetrackEpic, addTimetrackSuccessEpic, deleteTimetrackEpic),
+  combineEpics(
+    addTimetrackEpic,
+    addTimetrackSuccessEpic,
+    updateTimetrackEpic,
+    updateTimetrackSuccessEpic,
+    deleteTimetrackEpic,
+  ),
 );
 
 export const history = createHistory();
