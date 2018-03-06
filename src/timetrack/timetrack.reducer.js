@@ -9,15 +9,11 @@ const timetrack = [];
 
 export const timetrackReducer = (state = timetrack, action) => {
   let cloneItems;
-  let cloneState;
-  let index;
   switch (action.type) {
     case LOAD_TIMETRACK:
       return action.payload;
     case ADD_TIMETRACK_SUCCESS:
-      cloneItems = [...state];
-      cloneItems.push(action.payload);
-      return cloneItems;
+      return [...state, action.payload];
     case UPDATE_TIMETRACK_SUCCESS:
       cloneItems = [...state];
       const index = cloneItems.findIndex(item => item.id === action.payload.id);
