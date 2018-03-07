@@ -1,3 +1,4 @@
+import { combineEpics } from 'redux-observable';
 import { mergeMap, map } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import { push } from 'react-router-redux';
@@ -13,7 +14,7 @@ import {
   UPDATE_TIMETRACK_SUCCESS,
 } from './timetrack.action';
 
-export const addTimetrackEpic = action$ =>
+const addTimetrackEpic = action$ =>
   action$.ofType(ADD_TIMETRACK).pipe(
     mergeMap(action => {
       const data = action.payload;
@@ -32,10 +33,10 @@ export const addTimetrackEpic = action$ =>
     }),
   );
 
-export const addTimetrackSuccessEpic = action$ =>
+const addTimetrackSuccessEpic = action$ =>
   action$.ofType(ADD_TIMETRACK_SUCCESS).pipe(map(() => push('/list')));
 
-export const updateTimetrackEpic = action$ =>
+const updateTimetrackEpic = action$ =>
   action$.ofType(UPDATE_TIMETRACK).pipe(
     mergeMap(action => {
       const data = action.payload;
@@ -53,10 +54,10 @@ export const updateTimetrackEpic = action$ =>
     }),
   );
 
-export const updateTimetrackSuccessEpic = action$ =>
+const updateTimetrackSuccessEpic = action$ =>
   action$.ofType(UPDATE_TIMETRACK_SUCCESS).pipe(map(() => push('/list')));
 
-export const deleteTimetrackEpic = action$ =>
+const deleteTimetrackEpic = action$ =>
   action$.ofType(DELETE_TIMETRACK).pipe(
     mergeMap(action => {
       const data = action.payload;
@@ -69,4 +70,10 @@ export const deleteTimetrackEpic = action$ =>
     }),
   );
 
-// @todo combine epics here
+export const timetrackEpics = combineEpics(
+  addTimetrackEpic,
+  addTimetrackSuccessEpic,
+  updateTimetrackEpic,
+  updateTimetrackSuccessEpic,
+  deleteTimetrackEpic,
+);

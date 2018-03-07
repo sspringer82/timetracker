@@ -3,14 +3,7 @@ import { combineEpics, createEpicMiddleware } from 'redux-observable';
 import createHistory from 'history/createBrowserHistory';
 import { routerReducer, routerMiddleware } from 'react-router-redux';
 import { timetrackReducer } from '../timetrack/timetrack.reducer';
-
-import {
-  addTimetrackEpic,
-  addTimetrackSuccessEpic,
-  updateTimetrackEpic,
-  updateTimetrackSuccessEpic,
-  deleteTimetrackEpic,
-} from '../timetrack/timetrack.epic';
+import { timetrackEpics } from '../timetrack/timetrack.epic';
 import { loadTimetrack } from '../timetrack/timetrack.action';
 
 const rootReducer = combineReducers({
@@ -18,15 +11,7 @@ const rootReducer = combineReducers({
   router: routerReducer,
 });
 
-const epicMiddleware = createEpicMiddleware(
-  combineEpics(
-    addTimetrackEpic,
-    addTimetrackSuccessEpic,
-    updateTimetrackEpic,
-    updateTimetrackSuccessEpic,
-    deleteTimetrackEpic,
-  ),
-);
+const epicMiddleware = createEpicMiddleware(combineEpics(timetrackEpics));
 
 export const history = createHistory();
 const middleware = routerMiddleware(history);
