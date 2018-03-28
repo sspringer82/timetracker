@@ -1,22 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+const Td = styled.td`
+  border-bottom: 1px solid #dee2e6;
+  padding: 10px;
+`;
+
+const Black = styled.span`
+  color: black;
+`;
+
+const Tr = styled.tr`
+  &:hover {
+    background-color: lightgrey;
+  }
+`;
+
+const Delete = styled.div`
+  cursor: pointer;
+`;
 
 export const TimetrackItem = ({ item, handleDelete }) => {
   return (
-    <tr>
-      <td>{item.start}</td>
-      <td>{item.end}</td>
-      <td>{item.end - item.start}</td>
-      <td>{item.project}</td>
-      <td>{item.task}</td>
-      <td>
-        <button onClick={() => handleDelete(item)}>delete</button>
-      </td>
-      <td>
-        <Link to={`/edit/${item.id}`}>edit</Link>
-      </td>
-    </tr>
+    <Tr>
+      <Td>{item.start}</Td>
+      <Td>{item.end}</Td>
+      <Td>{item.end - item.start}</Td>
+      <Td>{item.project}</Td>
+      <Td>{item.task}</Td>
+      <Td>
+        <Delete onClick={() => handleDelete(item)}>
+          <i class="fas fa-trash" />
+        </Delete>
+      </Td>
+      <Td>
+        <Link to={`/edit/${item.id}`}>
+          <Black>
+            <i class="fas fa-edit" />
+          </Black>
+        </Link>
+      </Td>
+    </Tr>
   );
 };
 

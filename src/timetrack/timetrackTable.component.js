@@ -2,20 +2,38 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 import { TimetrackItem } from './timetrackItem.component';
 
+const Table = styled.table`
+  border-spacing: 0;
+  margin: 0 auto;
+`;
+
+const Th = styled.th`
+  background-color: #212529;
+  color: white;
+  padding: 10px;
+`;
+
+const CenterDiv = styled.div`
+  text-align: center;
+`;
+
 export const TimetrackTable = ({ items, handleDelete }) => {
   return (
-    <div>
-      <table>
+    <CenterDiv>
+      <Table>
         <thead>
           <tr>
-            <th>From</th>
-            <th>Until</th>
-            <th>Diff</th>
-            <th>Project</th>
-            <th>Task</th>
+            <Th>From</Th>
+            <Th>Until</Th>
+            <Th>Diff</Th>
+            <Th>Project</Th>
+            <Th>Task</Th>
+            <Th />
+            <Th />
           </tr>
         </thead>
         <tbody>
@@ -27,9 +45,11 @@ export const TimetrackTable = ({ items, handleDelete }) => {
             />
           ))}
         </tbody>
-      </table>
-      <Link to="/new">Form</Link>
-    </div>
+      </Table>
+      <Link to="/new">
+        <i class="far fa-file-alt" />
+      </Link>
+    </CenterDiv>
   );
 };
 
