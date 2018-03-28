@@ -26,7 +26,8 @@ export const configureStore = () => {
     .then(data => data.json())
     .then(data => {
       store.dispatch(loadTimetrack(data));
-    });
+    })
+    .catch(e => console.error(e));
 
   return store;
 };
