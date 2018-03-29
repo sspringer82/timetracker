@@ -47,7 +47,7 @@ export const TimetrackTable = ({ items, handleDelete }) => {
         </tbody>
       </Table>
       <Link to="/new">
-        <i class="far fa-file-alt" />
+        <i className="far fa-file-alt" />
       </Link>
     </CenterDiv>
   );

@@ -32,13 +32,13 @@ export const TimetrackItem = ({ item, handleDelete }) => {
       <Td>{item.task}</Td>
       <Td>
         <Delete onClick={() => handleDelete(item)}>
-          <i class="fas fa-trash" />
+          <i className="fas fa-trash" />
         </Delete>
       </Td>
       <Td>
         <Link to={`/edit/${item.id}`}>
           <Black>
-            <i class="fas fa-edit" />
+            <i className="fas fa-edit" />
           </Black>
         </Link>
       </Td>
