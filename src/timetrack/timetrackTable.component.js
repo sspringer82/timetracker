@@ -21,6 +21,15 @@ const CenterDiv = styled.div`
   text-align: center;
 `;
 
+const NewLink = styled.div`
+  padding: 10px;
+  svg.svg-inline--fa.fa-w-12 {
+    height: 20px;
+    width: 20px;
+    color: black;
+  }
+`;
+
 export const TimetrackTable = ({ items, handleDelete }) => {
   return (
     <CenterDiv>
@@ -47,7 +56,9 @@ export const TimetrackTable = ({ items, handleDelete }) => {
         </tbody>
       </Table>
       <Link to="/new">
-        <i className="far fa-file-alt" />
+        <NewLink>
+          <i className="far fa-file-alt" />
+        </NewLink>
       </Link>
     </CenterDiv>
   );
