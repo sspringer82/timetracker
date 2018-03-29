@@ -1,5 +1,5 @@
 import { combineEpics } from 'redux-observable';
-import { mergeMap, map } from 'rxjs/operators';
+import { mergeMap, map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import { push } from 'react-router-redux';
 import 'rxjs/add/observable/fromPromise';
@@ -29,6 +29,7 @@ const addTimetrackEpic = action$ =>
       ).pipe(
         mergeMap(response => Observable.fromPromise(response.json())),
         map(response => addTimetrackSuccess(response)),
+        catchError(err => console.error(err)),
       );
     }),
   );
@@ -50,6 +51,7 @@ const updateTimetrackEpic = action$ =>
       ).pipe(
         mergeMap(response => Observable.fromPromise(response.json())),
         map(response => updateTimetrackSuccess(response)),
+        catchError(err => console.error(err)),
       );
     }),
   );
@@ -66,7 +68,10 @@ const deleteTimetrackEpic = action$ =>
         fetch(`/timetrack/${data.id}`, {
           method: 'delete',
         }),
-      ).pipe(map(() => deleteTimetrackSuccess(data)));
+      ).pipe(
+        map(() => deleteTimetrackSuccess(data)),
+        catchError(err => console.error(err)),
+      );
     }),
   );
 
