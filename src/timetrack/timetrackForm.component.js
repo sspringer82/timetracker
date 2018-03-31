@@ -1,5 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const Label = styled.label`
+  display: block;
+  margin: 5px 0;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  margin-bottom: 10px;
+`;
+
+const Form = styled.form`
+  width: 50%;
+  margin: 15px auto;
+`;
+
+const Submit = styled.button`
+  margin: 5px 0;
+`;
 
 export class TimetrackForm extends React.Component {
   constructor(props) {
@@ -38,10 +58,10 @@ export class TimetrackForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={e => this.handleSubmit(e)}>
+      <Form onSubmit={e => this.handleSubmit(e)}>
         <div>
-          <label htmlFor="start">Start:</label>
-          <input
+          <Label htmlFor="start">Start:</Label>
+          <Input
             type="text"
             id="start"
             name="start"
@@ -50,8 +70,8 @@ export class TimetrackForm extends React.Component {
           />
         </div>
         <div>
-          <label htmlFor="end">Ende:</label>
-          <input
+          <Label htmlFor="end">Ende:</Label>
+          <Input
             type="text"
             id="end"
             name="end"
@@ -60,8 +80,8 @@ export class TimetrackForm extends React.Component {
           />
         </div>
         <div>
-          <label htmlFor="project">Projekt:</label>
-          <input
+          <Label htmlFor="project">Projekt:</Label>
+          <Input
             type="text"
             id="project"
             name="project"
@@ -70,8 +90,8 @@ export class TimetrackForm extends React.Component {
           />
         </div>
         <div>
-          <label htmlFor="task">Task:</label>
-          <input
+          <Label htmlFor="task">Task:</Label>
+          <Input
             type="text"
             id="task"
             name="task"
@@ -80,8 +100,8 @@ export class TimetrackForm extends React.Component {
           />
         </div>
 
-        <button>submit</button>
-      </form>
+        <Submit>submit</Submit>
+      </Form>
     );
   }
 }
