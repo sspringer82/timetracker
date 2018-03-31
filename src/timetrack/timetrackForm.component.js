@@ -106,8 +106,13 @@ export class TimetrackForm extends React.Component {
   }
 }
 
-TimetrackForm.props = {
-  onCreate: PropTypes.func,
-  onUpdate: PropTypes.func,
-  timetrack: PropTypes.any,
+TimetrackForm.propTypes = {
+  onCreate: PropTypes.func.isRequired,
+  onUpdate: PropTypes.func.isRequired,
+  timetrack: PropTypes.shape({
+    start: PropTypes.number,
+    end: PropTypes.number,
+    project: PropTypes.string,
+    task: PropTypes.string,
+  }).isRequired,
 };
