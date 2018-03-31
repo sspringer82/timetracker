@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { timetrackShape } from './timetrack.type';
 
 const Label = styled.label`
   display: block;
@@ -109,10 +110,5 @@ export class TimetrackForm extends React.Component {
 TimetrackForm.propTypes = {
   onCreate: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired,
-  timetrack: PropTypes.shape({
-    start: PropTypes.number,
-    end: PropTypes.number,
-    project: PropTypes.string,
-    task: PropTypes.string,
-  }).isRequired,
+  timetrack: timetrackShape,
 };

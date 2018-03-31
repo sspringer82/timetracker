@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { TimetrackItem } from './timetrackItem.component';
+import { timetrackShape } from './timetrack.type';
 
 const Table = styled.table`
   border-spacing: 0;
@@ -53,7 +54,7 @@ export const TimetrackTable = ({ items, handleDelete }) => {
           ))}
         </tbody>
       </Table>
-      <Link to="/new">
+      <Link to="/new" href="/new">
         <NewLink>
           <i className="far fa-file-alt" />
         </NewLink>
@@ -63,13 +64,6 @@ export const TimetrackTable = ({ items, handleDelete }) => {
 };
 
 TimetrackTable.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      start: PropTypes.number,
-      end: PropTypes.number,
-      project: PropTypes.string,
-      task: PropTypes.string,
-    }),
-  ).isRequired,
+  items: PropTypes.arrayOf(timetrackShape).isRequired,
   handleDelete: PropTypes.func.isRequired,
 };

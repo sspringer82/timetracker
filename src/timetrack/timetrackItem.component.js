@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { timetrackShape } from './timetrack.type';
 
 const Td = styled.td`
   border-bottom: 1px solid #dee2e6;
@@ -36,7 +37,7 @@ export const TimetrackItem = ({ item, handleDelete }) => {
         </Delete>
       </Td>
       <Td>
-        <Link to={`/edit/${item.id}`}>
+        <Link to={`/edit/${item.id}`} href={`/edit/${item.id}`}>
           <Black>
             <i className="fas fa-edit" />
           </Black>
@@ -47,11 +48,6 @@ export const TimetrackItem = ({ item, handleDelete }) => {
 };
 
 TimetrackItem.propTypes = {
-  item: PropTypes.shape({
-    start: PropTypes.number,
-    end: PropTypes.number,
-    project: PropTypes.string,
-    task: PropTypes.string,
-  }).isRequired,
+  item: timetrackShape.isRequired,
   handleDelete: PropTypes.func.isRequired,
 };
