@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { timetrackShape } from './timetrack.type';
 
 const Label = styled.label`
@@ -18,8 +19,16 @@ const Form = styled.form`
   margin: 15px auto;
 `;
 
-const Submit = styled.button`
+const Button = styled.button`
   margin: 5px 0;
+  border-radius: 6px;
+  padding: 5px;
+`;
+
+const Submit = Button.extend``;
+
+const Cancel = Button.extend`
+  margin-left: 10px;
 `;
 
 export class TimetrackForm extends React.Component {
@@ -102,6 +111,10 @@ export class TimetrackForm extends React.Component {
         </div>
 
         <Submit>submit</Submit>
+
+        <Link to="/list" href="/list">
+          <Cancel>cancel</Cancel>
+        </Link>
       </Form>
     );
   }
