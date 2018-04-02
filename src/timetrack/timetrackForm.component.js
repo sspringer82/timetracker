@@ -34,19 +34,9 @@ const Cancel = Button.extend`
 export class TimetrackForm extends React.Component {
   constructor(props) {
     super(props);
-    if (!props.timetrack) {
-      this.state = {
-        id: 0,
-        start: 0,
-        end: 0,
-        project: '',
-        task: '',
-      };
-    } else {
-      this.state = {
-        ...props.timetrack,
-      };
-    }
+    this.state = {
+      ...props.timetrack,
+    };
   }
 
   componentWillReceiveProps({ timetrack }) {
@@ -119,6 +109,15 @@ export class TimetrackForm extends React.Component {
     );
   }
 }
+
+TimetrackForm.defaultProps = {
+  timetrack: {
+    start: 0,
+    end: 0,
+    project: '',
+    task: '',
+  },
+};
 
 TimetrackForm.propTypes = {
   onCreate: PropTypes.func.isRequired,
