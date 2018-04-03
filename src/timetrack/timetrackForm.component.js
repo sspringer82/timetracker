@@ -25,10 +25,21 @@ const Button = styled.button`
   padding: 5px;
 `;
 
-const Submit = Button.extend``;
+const Submit = Button.extend`
+  background-color: #007bff;
+  color: white;
+  &:hover {
+    background-color: #0069d9;
+  }
+`;
 
 const Cancel = Button.extend`
   margin-left: 10px;
+  background-color: #dc3545;
+  color: white;
+  &:hover {
+    background-color: #c82333;
+  }
 `;
 
 export class TimetrackForm extends React.Component {
