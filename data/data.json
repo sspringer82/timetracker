@@ -1,0 +1,30 @@
+{
+  "logs": [
+    {
+      "id": 1,
+      "dateFrom": 1577167200000,
+      "dateUntil": 1577170800000,
+      "project": "Weihnachten",
+      "comment": "Aufstehen"
+    },
+    {
+      "id": 2,
+      "dateFrom": 1577170800000,
+      "dateUntil": 1577174400000,
+      "project": "Weihnachten",
+      "comment": "Frühstücken"
+    },{
+      "id": 3,
+      "dateFrom": 1577174400000,
+      "dateUntil": 1577178000000,
+      "project": "Weihnachten",
+      "comment": "Geschenke auspacken"
+    }, {
+      "id": 4,
+      "dateFrom": 1577829600000,
+      "dateUntil": 1577833199000,
+      "project": "Sylvester",
+      "comment": "Wach bleiben"
+    }
+  ]
+}
