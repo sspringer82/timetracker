@@ -1,14 +1,18 @@
-import * as _ from 'lodash';
+import Form from './form';
+import Log from './log';
+import Table from './table';
 
-function component() {
-  const element = document.createElement('div');
+async function main(): Promise<void> {
+  const tableElement = document.querySelector('table');
+  const formElement = document.querySelector('form');
+  const log = new Log();
+  const table = new Table(tableElement, log);
+  await table.init();
+  table.render();
+  const form = new Form(formElement, log, table);
+  await form.init();
 
-  // Lodash, currently included via a script, is required for this line to work
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-
-  return element;
+  tableElement.addEventListener('click', table.handleDelete.bind(table));
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.body.appendChild(component());
-})
+document.addEventListener('DOMContentLoaded', main);
