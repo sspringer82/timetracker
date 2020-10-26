@@ -52,16 +52,19 @@ export default class Table {
 
   private createHeaderRow(date: Date): HTMLTableRowElement {
     const headerTr = document.createElement('tr');
+    headerTr.className = 'header';
     headerTr.appendChild(
-      this.createCell(format(date, 'EEEE, dd.MM.yyyy'), { colspan: '5' }),
+      this.createCell(format(date, 'EEEE, dd.MM.yyyy'), { colspan: '6' }),
     );
     return headerTr;
   }
 
   private createFooterRow(sum: number): HTMLTableRowElement {
     const footerTr = document.createElement('tr');
+    footerTr.className = 'footer';
     footerTr.appendChild(this.createCell('sum', { colspan: '4' }));
     footerTr.appendChild(this.createDurationCell(sum));
+    footerTr.appendChild(this.createCell(''));
     return footerTr;
   }
 
@@ -90,7 +93,7 @@ export default class Table {
           tr.appendChild(this.createTimeCell(log.from));
           tr.appendChild(this.createTimeCell(log.until));
           tr.appendChild(this.createDurationCell(log.from, log.until));
-          tr.appendChild(this.createDeleteButton(log.id));
+          tr.appendChild(this.createDeleteButtonCell());
           return tr;
         },
       )
@@ -101,10 +104,12 @@ export default class Table {
     return tbody;
   }
 
-  private createDeleteButton(id: number): HTMLButtonElement {
+  private createDeleteButtonCell(): HTMLTableCellElement {
+    const td = document.createElement('td');
     const button = document.createElement('button');
     button.innerText = '🗑';
-    return button;
+    td.appendChild(button);
+    return td;
   }
 
   private buildTable(logs: Map<Date, LogType[]>): HTMLTableSectionElement {

@@ -6,17 +6,32 @@
   </head>
   <body>
     <form id="form">
-      <select id="project">
-        <option>Breakfast</option>
-        <option>Work</option>
-        <option>Lunch</option>
-        <option>Dinner</option>
-        <option>Sleep</option>
-      </select>
-      <input type="text" placeholder="date" id="date" value="2020-05-17" />
-      <input type="text" placeholder="from" id="from" value="08:00" />
-      <input type="text" placeholder="until" id="until" value="09:00" />
-      <output>time</output>
+      <fieldset>
+        <label for="project">Project: </label>
+        <select id="project">
+          <option>Breakfast</option>
+          <option>Work</option>
+          <option>Lunch</option>
+          <option>Dinner</option>
+          <option>Sleep</option>
+        </select>
+      </fieldset>
+      <fieldset>
+        <label for="date">Date: </label>
+        <input type="text" placeholder="date" id="date" value="2020-05-17" />
+      </fieldset>
+      <fieldset>
+        <label for="from">From: </label>
+        <input type="text" placeholder="from" id="from" value="08:00" />
+      </fieldset>
+      <fieldset>
+        <label for="until">Until: </label>
+        <input type="text" placeholder="until" id="until" value="09:00" />
+      </fieldset>
+      <fieldset>
+        <label for="time">Time: </label>
+        <output id="time">time</output>
+      </fieldset>
       <button type="submit">save</button>
     </form>
     <table>
@@ -27,6 +42,7 @@
           <th>from</th>
           <th>until</th>
           <th>duration</th>
+          <th></th>
         </tr>
       </thead>
     </table>

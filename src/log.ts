@@ -43,7 +43,7 @@ export default class Log {
 
   private getLogsSortedByDay(logs: LogType[]): Map<Date, LogType[]> {
     return logs
-      .sort((a, b) => a.from - b.from)
+      .sort((a, b) => b.from - a.from)
       .reduce((prev: Map<Date, LogType[]>, current: LogType) => {
         let dateKey: Date;
         const currentDate = new Date(current.from);
