@@ -41,24 +41,6 @@
       "project": "Breakfast",
       "from": 1589608800000,
       "until": 1589612400000
-    },
-    {
-      "project": "Breakfast",
-      "from": 1589695200000,
-      "until": 1589700600000,
-      "id": 8
-    },
-    {
-      "project": "Work",
-      "from": 1589698800000,
-      "until": 1589731200000,
-      "id": 9
-    },
-    {
-      "project": "Breakfast",
-      "from": 1589695200000,
-      "until": 1589698800000,
-      "id": 10
     }
   ]
 }
