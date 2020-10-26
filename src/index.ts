@@ -2,6 +2,8 @@ import Form from './form';
 import Log from './log';
 import Table from './table';
 
+import './style.scss';
+
 async function main(): Promise<void> {
   const tableElement = document.querySelector('table');
   const formElement = document.querySelector('form');
