@@ -15,6 +15,7 @@ async function main(): Promise<void> {
   await form.init();
 
   tableElement.addEventListener('click', table.handleDelete.bind(table));
+  askForNPerm();
 }
 
 document.addEventListener('DOMContentLoaded', main);
@@ -29,5 +30,11 @@ if ('serviceWorker' in navigator) {
       .catch((registrationError) => {
         console.log('SW registration failed: ', registrationError);
       });
+  });
+}
+
+function askForNPerm() {
+  Notification.requestPermission(function (result) {
+    console.log(result);
   });
 }
