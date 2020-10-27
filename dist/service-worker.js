@@ -535,7 +535,7 @@
       (C = [
         { revision: '30672e6a48685d1d96f5e732d1b8cefc', url: 'icon.png' },
         { revision: '834578a90593343ea7611848e180ca7e', url: 'index.html' },
-        { revision: '70bf72dbcc930b600d7f6d189df16c51', url: 'main.js' },
+        { revision: 'e2ea08d5aabfa793e0e1dfcbadadbe5d', url: 'main.js' },
         {
           revision: '67fa1d5b2cce4b9db37644fb7f577445',
           url: 'manifest.json',

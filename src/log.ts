@@ -1,13 +1,30 @@
 import { isSameDay } from 'date-fns';
 import LogType from './util/log';
+import Dexie from 'dexie';
 
 export default class Log {
   private logs: LogType[];
   public logMap: Map<Date, LogType[]>;
+  private db: Dexie;
+
+  constructor() {
+    this.db = new Dexie('LogsDatabase');
+    this.db.version(1).stores({
+      logs: 'id,project',
+    });
+  }
 
   async getAllLogs(): Promise<Map<Date, LogType[]>> {
-    const request = await fetch('http://localhost:3030/logs');
-    this.logs = await request.json();
+    try {
+      const request = await fetch('http://localhost:3030/logs');
+      this.logs = await request.json();
+
+      this.db.table('logs').clear();
+      this.db.table('logs').bulkAdd(this.logs);
+    } catch (e) {
+      this.logs = await this.db.table('logs').toArray();
+    }
+
     this.logMap = this.getLogsSortedByDay(this.logs);
     return this.logMap;
   }
