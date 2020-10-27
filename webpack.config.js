@@ -1,6 +1,7 @@
 const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   entry: './src/index.ts',
@@ -9,6 +10,11 @@ module.exports = {
     new CleanWebpackPlugin(),
     new CopyPlugin({
       patterns: [{ from: 'src/public', to: '.' }],
+    }),
+
+    new WorkboxPlugin.InjectManifest({
+      swSrc: './src/sw.js',
+      swDest: 'service-worker.js',
     }),
   ],
   module: {
