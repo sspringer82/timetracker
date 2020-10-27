@@ -1,7 +1,14 @@
-@media screen and (max-width: 960px) {
+@media (max-width: 960px) {
   body {
-    background-color: green;
+    flex-direction: column-reverse;
     form {
+      display: flex;
+
+      #from,
+      #until,
+      #date {
+        width: 70px;
+      }
       label {
         display: none;
       }
