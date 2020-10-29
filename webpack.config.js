@@ -8,6 +8,11 @@ module.exports = {
   devtool: 'inline-source-map',
   plugins: [
     new CleanWebpackPlugin(),
+
+    new WorkboxPlugin.InjectManifest({
+      swSrc: './src/sw.js',
+      swDest: 'service-worker.js',
+    }),
     new CopyPlugin({
       patterns: [{ from: 'src/public', to: '.' }],
     }),

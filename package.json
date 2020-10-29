@@ -36,7 +36,11 @@
   },
   "dependencies": {
     "date-fns": "^2.16.1",
+<<<<<<< HEAD
     "dexie": "^3.0.2",
+=======
+    "http-server": "^0.12.3",
+>>>>>>> a387f7432d99cdf4a538edc5439e7f71e4060c2a
     "json-server": "^0.16.2"
   }
 }
