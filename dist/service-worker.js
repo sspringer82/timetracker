@@ -534,10 +534,10 @@
     s(873),
       (K = [
         { revision: '30672e6a48685d1d96f5e732d1b8cefc', url: 'icon.png' },
-        { revision: 'e77c0b432fe547d28a9ddab55f1daa93', url: 'index.html' },
+        { revision: '248bad01220da9dcb11cb5e4ef46c772', url: 'index.html' },
         { revision: 'a8418201249bd7302d418b6cfd0fc9f7', url: 'main.js' },
         {
-          revision: '3456dc1ef6c87b19d8cd0ea4fbfc2a0b',
+          revision: '5c89548e859cad65365e22f8972ca060',
           url: 'manifest.json',
         },
       ]),
