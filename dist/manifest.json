@@ -1,10 +1,6 @@
 {
   "short_name": "Timetracker",
-<<<<<<< HEAD
-  "name": "Time tracking application",
-=======
   "name": "Timetracker",
->>>>>>> a387f7432d99cdf4a538edc5439e7f71e4060c2a
   "icons": [
     {
       "src": "icon.png",
@@ -12,16 +8,8 @@
       "type": "image/png"
     }
   ],
-<<<<<<< HEAD
-  "start_url": "./",
-  "display": "standalone",
-  "theme_color": "#0000ff",
-  "background_color": "#ffffff"
-}
-=======
   "start_url": "./index.html",
   "display": "standalone",
   "theme_color": "#0000ff",
   "background_color": "#ffffff"
 }
->>>>>>> a387f7432d99cdf4a538edc5439e7f71e4060c2a

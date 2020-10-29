@@ -16,11 +16,6 @@ module.exports = {
     new CopyPlugin({
       patterns: [{ from: 'src/public', to: '.' }],
     }),
-
-    new WorkboxPlugin.InjectManifest({
-      swSrc: './src/sw.js',
-      swDest: 'service-worker.js',
-    }),
   ],
   module: {
     rules: [
