@@ -32,12 +32,9 @@ if ('serviceWorker' in navigator) {
       });
   });
 }
-<<<<<<< HEAD
 
 function askForNPerm() {
   Notification.requestPermission(function (result) {
     console.log(result);
   });
 }
-=======
->>>>>>> a387f7432d99cdf4a538edc5439e7f71e4060c2a
