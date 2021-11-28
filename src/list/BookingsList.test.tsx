@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
+import { BookingsProvider } from '../BookingsContext';
 import BookingsList from './BookingsList';
 
 describe('BookingsList', () => {
@@ -57,7 +58,11 @@ describe('BookingsList', () => {
     );
 
     await act(async () => {
-      render(<BookingsList />);
+      render(
+        <BookingsProvider>
+          <BookingsList />
+        </BookingsProvider>,
+      );
     });
 
     const result = await screen.getAllByTestId('project');
@@ -85,7 +90,11 @@ describe('BookingsList', () => {
     });
 
     await act(async () => {
-      render(<BookingsList />);
+      render(
+        <BookingsProvider>
+          <BookingsList />
+        </BookingsProvider>,
+      );
     });
 
     await act(async () => {

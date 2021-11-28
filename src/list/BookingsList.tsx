@@ -1,33 +1,9 @@
-import format from 'date-fns/format';
-import React, { useEffect, useState } from 'react';
-import { Booking } from '../Booking';
+import React from 'react';
 import DailyBookings from './DailyBookings';
+import useBookingsList from './useBookingsList';
 
 const BookingsList = (): React.ReactElement => {
-  const [bookings, setBookings] = useState<Booking[]>([]);
-
-  useEffect(() => {
-    fetch('http://localhost:3001/bookings')
-      .then((response) => response.json())
-      .then((data) => setBookings(data));
-  }, []);
-
-  const filteredBookings: Record<string, Booking[]> = {};
-  bookings.forEach((booking) => {
-    const date = format(booking.start, 'yyyy-MM-dd');
-    if (filteredBookings[date]) {
-      filteredBookings[date].push(booking);
-    } else {
-      filteredBookings[date] = [booking];
-    }
-  });
-
-  async function handleDelete(id: number) {
-    await fetch(`http://localhost:3001/bookings/${id}`, { method: 'delete' });
-    setBookings((prevBookings) => {
-      return prevBookings.filter((booking) => booking.id !== id);
-    });
-  }
+  const { filteredBookings, handleDelete } = useBookingsList();
 
   return (
     <>

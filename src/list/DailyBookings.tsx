@@ -6,6 +6,7 @@ import {
 } from 'date-fns';
 import React from 'react';
 import { Booking } from '../Booking';
+import sumBookings from '../util/sumBookings';
 import BookingItem from './BookingItem';
 
 type Props = {
@@ -14,13 +15,7 @@ type Props = {
 };
 
 const DailyBookings = ({ bookings, onDelete }: Props): React.ReactElement => {
-  const diffInMS = bookings
-    .map((booking) => {
-      return differenceInMilliseconds(booking.end, booking.start);
-    })
-    .reduce((prev, curr) => prev + curr, 0);
-  const sum = addMilliseconds(parseISO('2021-01-01'), diffInMS);
-
+  const sum = sumBookings(bookings);
   return (
     <div>
       <h1 data-testid="day">
