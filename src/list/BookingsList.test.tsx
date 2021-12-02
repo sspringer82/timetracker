@@ -107,4 +107,44 @@ describe('BookingsList', () => {
       { method: 'delete' },
     );
   });
+
+  it('should work with a filter activated', async () => {
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => {
+          return Promise.resolve([
+            {
+              id: 1,
+              start: 1627884000000,
+              end: 1627889400000,
+              project: 'Frühstück',
+            },
+            {
+              id: 2,
+              start: 1627797600000,
+              end: 1627801200000,
+              project: 'Mittagessen',
+            },
+          ]);
+        },
+      }),
+    );
+
+    await act(async () => {
+      render(
+        <BookingsProvider>
+          <BookingsList />
+        </BookingsProvider>,
+      );
+    });
+
+    fireEvent.change(screen.getByTestId('filter-input'), {
+      target: { value: 'Mittagessen' },
+    });
+    fireEvent.click(screen.getByTestId('filter-submit'));
+
+    const result = await screen.getAllByTestId('project');
+    expect(result).toHaveLength(1);
+    expect(result[0]).toHaveTextContent('Mittagessen');
+  });
 });

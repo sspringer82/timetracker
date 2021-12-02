@@ -8,14 +8,39 @@ import {
 } from 'react';
 import { Booking } from './Booking';
 
-type ContextValue = [Booking[], Dispatch<SetStateAction<Booking[]>>];
+type ContextValue = {
+  bookings: Booking[];
+  setBookings: Dispatch<SetStateAction<Booking[]>>;
+  filter: string;
+  setFilter: Dispatch<SetStateAction<string>>;
+};
 
-export const BookingsContext = createContext<ContextValue>([[], (e) => e]);
+const initialValue: ContextValue = {
+  bookings: [],
+  setBookings: () => {},
+  filter: '',
+  setFilter: () => {},
+};
+
+export const BookingsContext = createContext<ContextValue>(initialValue);
 
 export const BookingsProvider = (props: {
   children: ReactNode;
 }): ReactElement => {
-  const bookingState = useState<Booking[]>([]);
+  const [bookings, setBookings] = useState<Booking[]>([]);
+  const [filter, setFilter] = useState<string>('');
 
-  return <BookingsContext.Provider value={bookingState} {...props} />;
+  return (
+    <BookingsContext.Provider
+      value={{
+        bookings: bookings.filter((booking) =>
+          booking.project.includes(filter),
+        ),
+        setBookings,
+        filter,
+        setFilter,
+      }}
+      {...props}
+    />
+  );
 };

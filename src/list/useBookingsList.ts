@@ -4,7 +4,7 @@ import { Booking } from '../Booking';
 import { BookingsContext } from '../BookingsContext';
 
 export default function useBookingsList() {
-  const [bookings, setBookings] = useContext(BookingsContext);
+  const { bookings, setBookings, setFilter } = useContext(BookingsContext);
 
   useEffect(() => {
     fetch('http://localhost:3001/bookings')
@@ -32,5 +32,6 @@ export default function useBookingsList() {
   return {
     handleDelete,
     filteredBookings,
+    setFilter,
   };
 }

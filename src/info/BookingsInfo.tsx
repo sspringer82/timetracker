@@ -4,7 +4,7 @@ import { BookingsContext } from '../BookingsContext';
 import sumBookings from '../util/sumBookings';
 
 const BookingsInfo = (): ReactElement => {
-  const [bookings] = useContext(BookingsContext);
+  const { bookings } = useContext(BookingsContext);
 
   const sum = sumBookings(bookings);
 
