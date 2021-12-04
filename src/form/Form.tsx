@@ -49,6 +49,7 @@ const Form = ({ booking, onSave }: Props): ReactElement => {
       submittedBooking.id = booking.id;
     }
     onSave(submittedBooking);
+    setFormValues(initialBooking);
   }
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
