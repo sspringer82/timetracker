@@ -147,4 +147,81 @@ describe('BookingsList', () => {
     expect(result).toHaveLength(1);
     expect(result[0]).toHaveTextContent('Mittagessen');
   });
+
+  it('should create a new entry', async () => {
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => {
+          return Promise.resolve([
+            {
+              id: 1,
+              start: 1627884000000,
+              end: 1627889400000,
+              project: 'Frühstück',
+            },
+            {
+              id: 2,
+              start: 1627797600000,
+              end: 1627801200000,
+              project: 'Mittagessen',
+            },
+          ]);
+        },
+      }),
+    );
+
+    await act(async () => {
+      render(
+        <BookingsProvider>
+          <BookingsList />
+        </BookingsProvider>,
+      );
+    });
+
+    await act(async () => {
+      fireEvent.change(screen.getByTestId('form-start'), {
+        target: {
+          value: '2021-01-01T08:30',
+        },
+      });
+      fireEvent.change(screen.getByTestId('form-end'), {
+        target: {
+          value: '2021-01-01T10:30',
+        },
+      });
+      fireEvent.change(screen.getByTestId('form-project'), {
+        target: {
+          value: 'arbeiten',
+        },
+      });
+    });
+
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => {
+          return Promise.resolve({
+            id: 3,
+            start: 1609486200000,
+            end: 1609493400000,
+            project: 'arbeiten',
+          });
+        },
+      }),
+    );
+
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('form-submit'));
+    });
+
+    expect(global.fetch.mock.calls[0][1].method).toBe('POST');
+
+    const body = JSON.parse(global.fetch.mock.calls[0][1].body);
+    expect(body.start).toBe(1609486200000);
+    expect(body.end).toBe(1609493400000);
+    expect(body.project).toBe('arbeiten');
+
+    const result = await screen.getAllByTestId('project');
+    expect(result).toHaveLength(3);
+  });
 });

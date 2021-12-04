@@ -1,10 +1,12 @@
 import React from 'react';
+import Form from '../form/Form';
 import DailyBookings from './DailyBookings';
 import Filter from './Filter';
 import useBookingsList from './useBookingsList';
 
 const BookingsList = (): React.ReactElement => {
-  const { filteredBookings, handleDelete, setFilter } = useBookingsList();
+  const { filteredBookings, handleDelete, setFilter, handleSave } =
+    useBookingsList();
 
   return (
     <>
@@ -18,6 +20,7 @@ const BookingsList = (): React.ReactElement => {
             onDelete={handleDelete}
           />
         ))}
+      <Form onSave={handleSave} />
     </>
   );
 };
