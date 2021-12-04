@@ -4,3 +4,5 @@ export type Booking = {
   end: number;
   project: string;
 };
+
+export type InputBooking = Omit<Booking, 'id'> & { id?: number };
