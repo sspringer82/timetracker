@@ -224,4 +224,74 @@ describe('BookingsList', () => {
     const result = await screen.getAllByTestId('project');
     expect(result).toHaveLength(3);
   });
+
+  it('should edit an existing entry', async () => {
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => {
+          return Promise.resolve([
+            {
+              id: 1,
+              start: 1627884000000,
+              end: 1627889400000,
+              project: 'Frühstück',
+            },
+            {
+              id: 2,
+              start: 1627797600000,
+              end: 1627801200000,
+              project: 'Mittagessen',
+            },
+          ]);
+        },
+      }),
+    );
+    await act(async () => {
+      render(
+        <BookingsProvider>
+          <BookingsList />
+        </BookingsProvider>,
+      );
+    });
+
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('edit-button-1'));
+    });
+
+    fireEvent.change(screen.getAllByTestId('form-project')[0], {
+      target: {
+        value: 'Was essen',
+      },
+    });
+
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => {
+          return Promise.resolve({
+            id: 1,
+            start: 1627884000000,
+            end: 1627889400000,
+            project: 'Was essen',
+          });
+        },
+      }),
+    );
+
+    await act(async () => {
+      fireEvent.click(screen.getAllByTestId('form-submit')[0]);
+    });
+
+    expect(global.fetch.mock.calls[0][1].method).toBe('PUT');
+
+    const body = JSON.parse(global.fetch.mock.calls[0][1].body);
+    expect(body.id).toBe(1);
+    expect(body.start).toBe(1627884000000);
+    expect(body.end).toBe(1627889400000);
+    expect(body.project).toBe('Was essen');
+
+    expect(await screen.getAllByTestId('project')[1]).toHaveTextContent(
+      'Was essen',
+    );
+  });
 });
