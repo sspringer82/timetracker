@@ -3,6 +3,8 @@ import { act } from 'react-dom/test-utils';
 import { BookingsProvider } from '../BookingsContext';
 import BookingsList from './BookingsList';
 
+declare let global: any;
+
 describe('BookingsList', () => {
   it.skip('should render a List with 3 Bookings on 2 different days', () => {
     render(<BookingsList />);
@@ -26,10 +28,11 @@ describe('BookingsList', () => {
   });
 
   beforeEach(() => {
-    fetch.mockReset && fetch.mockReset();
+    global.fetch.mockReset && global.fetch.mockReset();
   });
 
   it('should load data from the server', async () => {
+
     global.fetch = jest.fn(() =>
       Promise.resolve({
         json: () => {

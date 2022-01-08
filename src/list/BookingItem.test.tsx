@@ -10,7 +10,7 @@ describe('BookingItem', () => {
     project: 'Frühstück',
   };
   it('should show a single Item', () => {
-    render(<BookingItem booking={booking} onDelete={jest.fn()} />);
+    render(<BookingItem booking={booking} onDelete={jest.fn()} onSave={jest.fn()} editMode={null} setEditMode={jest.fn()} />);
 
     expect(screen.getByTestId('date')).toHaveTextContent('01.08.2021');
     expect(screen.getByTestId('start')).toHaveTextContent('08:15');
@@ -21,7 +21,7 @@ describe('BookingItem', () => {
   it('should be possible to delete an item', () => {
     const handleDelete = jest.fn();
 
-    render(<BookingItem booking={booking} onDelete={handleDelete} />);
+    render(<BookingItem booking={booking} onDelete={handleDelete} onSave={jest.fn()} editMode={null} setEditMode={jest.fn()} />);
 
     fireEvent.click(screen.getByTestId('delete-button'));
 

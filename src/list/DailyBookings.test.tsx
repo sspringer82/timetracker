@@ -19,7 +19,7 @@ describe('DailyBookings', () => {
       },
     ];
 
-    render(<DailyBookings bookings={bookings} onDelete={jest.fn()} />);
+    render(<DailyBookings bookings={bookings} onDelete={jest.fn()} onSave={jest.fn()} editMode={null} setEditMode={jest.fn()} />);
 
     expect(screen.getByTestId('day')).toHaveTextContent('01.08.2021');
     expect(screen.getAllByTestId('project')).toHaveLength(2);

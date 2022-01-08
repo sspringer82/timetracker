@@ -2,7 +2,6 @@ import { format } from 'date-fns';
 import React from 'react';
 import { Booking, InputBooking } from '../Booking';
 import Form from '../form/Form';
-import useBookingsList from './useBookingsList';
 
 type Props = {
   booking: Booking;
