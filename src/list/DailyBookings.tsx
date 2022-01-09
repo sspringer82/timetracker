@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { format, getHours, getMinutes } from 'date-fns';
 import React from 'react';
 import { Booking, InputBooking } from '../Booking';
 import sumBookings from '../util/sumBookings';
@@ -20,6 +20,14 @@ const DailyBookings = ({
   setEditMode,
 }: Props): React.ReactElement => {
   const sum = sumBookings(bookings);
+  const hours = getHours(sum);
+  const minutes = getMinutes(sum);
+  let color = 'green';
+  if (hours > 8 || hours < 7) {
+    color = 'red';
+  } else if ((hours == 8 && minutes > 30) || (hours < 8 && minutes < 30)) {
+    color = 'orange';
+  }
   return (
     <div>
       <h1 data-testid="day">
@@ -37,7 +45,7 @@ const DailyBookings = ({
           setEditMode={setEditMode}
         />
       ))}
-      <div>
+      <div data-testid="daily-sum" style={{fontWeight: 'bold', color}}>
         Summe: <span data-testid="sum">{format(sum, 'HH:mm')}</span>
       </div>
     </div>
