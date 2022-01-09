@@ -25,7 +25,7 @@ const DailyBookings = ({
   let color = 'green';
   if (hours > 8 || hours < 7) {
     color = 'red';
-  } else if ((hours == 8 && minutes > 30) || (hours < 8 && minutes < 30)) {
+  } else if ((hours === 8 && minutes > 30) || (hours < 8 && minutes < 30)) {
     color = 'orange';
   }
   return (
