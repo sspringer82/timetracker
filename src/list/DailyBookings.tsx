@@ -2,7 +2,7 @@ import { format, getHours, getMinutes } from 'date-fns';
 import React from 'react';
 import { Booking, InputBooking } from '../Booking';
 import sumBookings from '../util/sumBookings';
-import BookingItem from './BookingItem';
+import BookingItem from './BookingItem/BookingItem';
 
 type Props = {
   bookings: Booking[];

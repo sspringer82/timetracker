@@ -1,0 +1,21 @@
+.BookingItem {
+  display: flex;
+  margin: 0px 10px;
+  justify-content: space-between;
+  line-height: 35px;
+}
+
+.BookingItem:nth-child(even) {
+  background-color: lightgray;
+}
+
+
+.BookingItem .data, .BookingItem .buttons {
+  display: flex;
+  align-items: center;
+}
+
+.BookingItem .data div, .BookingItem .buttons button {
+  margin: 0px 10px;
+}
+

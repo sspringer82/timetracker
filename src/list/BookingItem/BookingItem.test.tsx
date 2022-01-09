@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { Booking } from '../Booking';
+import { Booking } from '../../Booking';
 import BookingItem from './BookingItem';
 
 describe('BookingItem', () => {
