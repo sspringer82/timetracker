@@ -1,8 +1,23 @@
-import { FormEvent, ReactElement, useRef } from 'react';
+/** @jsxImportSource @emotion/react */
+
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
+import { FormEvent, ReactElement, useRef } from "react";
 
 type Props = {
   onFilter: (filter: string) => void;
 };
+
+type ButtonProps = {
+  variant?: string;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+const Button = styled.button<ButtonProps>`
+  border-radius: 5px;
+  color: ${({ variant }) => (variant === "primary" ? "white" : "black")};
+  background-color: ${({ variant }) =>
+    variant === "primary" ? "blue" : "lightgray"};
+  margin: 0 10px;
+`;
 
 const Filter = ({ onFilter }: Props): ReactElement => {
   const searchRef = useRef<HTMLInputElement>(null);
@@ -21,10 +36,13 @@ const Filter = ({ onFilter }: Props): ReactElement => {
         placeholder="Suchbegriff"
         ref={searchRef}
         data-testid="filter-input"
+        css={css`
+          margin: 0 10px;
+        `}
       />
-      <button type="submit" data-testid="filter-submit">
+      <Button type="submit" data-testid="filter-submit" variant="primary">
         Suche
-      </button>
+      </Button>
     </form>
   );
 };

@@ -3,6 +3,9 @@ import { format } from "date-fns";
 import React from "react";
 import { Booking, InputBooking } from "../../Booking";
 import Form from "../../form/Form";
+import { Button } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 type Props = {
   booking: Booking;
@@ -39,18 +42,24 @@ const BookingItem = ({
           <div data-testid="project">{booking.project}</div>
         </div>
         <div className="buttons">
-          <button
+          <Button
             data-testid="delete-button"
             onClick={() => onDelete(booking.id)}
+            variant="contained"
+            color="error"
+            startIcon={<DeleteIcon />}
           >
             löschen
-          </button>
-          <button
+          </Button>
+          <Button
             data-testid={`edit-button-${booking.id}`}
             onClick={() => setEditMode(booking.id)}
+            variant="contained"
+            color="primary"
+            startIcon={<EditIcon />}
           >
             bearbeiten
-          </button>
+          </Button>
         </div>
       </div>
     );
