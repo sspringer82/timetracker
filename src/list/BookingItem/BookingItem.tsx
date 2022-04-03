@@ -1,11 +1,12 @@
-import "./BookingItem.scss";
-import { format } from "date-fns";
-import React from "react";
-import { Booking, InputBooking } from "../../Booking";
-import Form from "../../form/Form";
+import './BookingItem.scss';
+import { format } from 'date-fns';
+import React from 'react';
+import { Booking, InputBooking } from '../../Booking';
+import Form from '../../form/Form';
 import { Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { Link } from 'react-router-dom';
 
 type Props = {
   booking: Booking;
@@ -36,9 +37,9 @@ const BookingItem = ({
     return (
       <div className="BookingItem">
         <div className="data">
-          <div data-testid="date">{format(booking.start, "dd.MM.yyyy")}</div>
-          <div data-testid="start">{format(booking.start, "HH:mm")}</div>
-          <div data-testid="end">{format(booking.end, "HH:mm")}</div>
+          <div data-testid="date">{format(booking.start, 'dd.MM.yyyy')}</div>
+          <div data-testid="start">{format(booking.start, 'HH:mm')}</div>
+          <div data-testid="end">{format(booking.end, 'HH:mm')}</div>
           <div data-testid="project">{booking.project}</div>
         </div>
         <div className="buttons">
@@ -60,6 +61,15 @@ const BookingItem = ({
           >
             bearbeiten
           </Button>
+          <Link
+            to={`/edit/${booking.id}`}
+            data-testid={`edit-link-${booking.id}`}
+          >
+            bearbeiten
+          </Link>
+          <Link to={`/${booking.id}`} data-testid={`open-link-${booking.id}`}>
+            in dialog bearbeiten
+          </Link>
         </div>
       </div>
     );

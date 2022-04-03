@@ -1,6 +1,15 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
+import { useContext, useEffect } from 'react';
 import { act } from 'react-dom/test-utils';
-import { BookingsProvider } from '../BookingsContext';
+import { MemoryRouter, BrowserRouter } from 'react-router-dom';
+import { Booking } from '../Booking';
+import { BookingsContext, BookingsProvider } from '../BookingsContext';
 import BookingsList from './BookingsList';
 
 declare let global: any;
@@ -32,7 +41,6 @@ describe('BookingsList', () => {
   });
 
   it('should load data from the server', async () => {
-
     global.fetch = jest.fn(() =>
       Promise.resolve({
         json: () => {
@@ -57,14 +65,16 @@ describe('BookingsList', () => {
             },
           ]);
         },
-      }),
+      })
     );
 
     await act(async () => {
       render(
-        <BookingsProvider>
-          <BookingsList />
-        </BookingsProvider>,
+        <BrowserRouter>
+          <BookingsProvider>
+            <BookingsList />
+          </BookingsProvider>
+        </BrowserRouter>
       );
     });
 
@@ -94,9 +104,11 @@ describe('BookingsList', () => {
 
     await act(async () => {
       render(
-        <BookingsProvider>
-          <BookingsList />
-        </BookingsProvider>,
+        <BrowserRouter>
+          <BookingsProvider>
+            <BookingsList />
+          </BookingsProvider>
+        </BrowserRouter>
       );
     });
 
@@ -107,7 +119,7 @@ describe('BookingsList', () => {
     expect(global.fetch).toHaveBeenNthCalledWith(
       2,
       'http://localhost:3001/bookings/4',
-      { method: 'delete' },
+      { method: 'delete' }
     );
   });
 
@@ -130,14 +142,16 @@ describe('BookingsList', () => {
             },
           ]);
         },
-      }),
+      })
     );
 
     await act(async () => {
       render(
-        <BookingsProvider>
-          <BookingsList />
-        </BookingsProvider>,
+        <BrowserRouter>
+          <BookingsProvider>
+            <BookingsList />
+          </BookingsProvider>
+        </BrowserRouter>
       );
     });
 
@@ -149,83 +163,6 @@ describe('BookingsList', () => {
     const result = await screen.getAllByTestId('project');
     expect(result).toHaveLength(1);
     expect(result[0]).toHaveTextContent('Mittagessen');
-  });
-
-  it('should create a new entry', async () => {
-    global.fetch = jest.fn(() =>
-      Promise.resolve({
-        json: () => {
-          return Promise.resolve([
-            {
-              id: 1,
-              start: 1627884000000,
-              end: 1627889400000,
-              project: 'Frühstück',
-            },
-            {
-              id: 2,
-              start: 1627797600000,
-              end: 1627801200000,
-              project: 'Mittagessen',
-            },
-          ]);
-        },
-      }),
-    );
-
-    await act(async () => {
-      render(
-        <BookingsProvider>
-          <BookingsList />
-        </BookingsProvider>,
-      );
-    });
-
-    await act(async () => {
-      fireEvent.change(screen.getByTestId('form-start'), {
-        target: {
-          value: '2021-01-01T08:30',
-        },
-      });
-      fireEvent.change(screen.getByTestId('form-end'), {
-        target: {
-          value: '2021-01-01T10:30',
-        },
-      });
-      fireEvent.change(screen.getByTestId('form-project'), {
-        target: {
-          value: 'arbeiten',
-        },
-      });
-    });
-
-    global.fetch = jest.fn(() =>
-      Promise.resolve({
-        ok: true,
-        json: () => {
-          return Promise.resolve({
-            id: 3,
-            start: 1609486200000,
-            end: 1609493400000,
-            project: 'arbeiten',
-          });
-        },
-      }),
-    );
-
-    await act(async () => {
-      fireEvent.click(screen.getByTestId('form-submit'));
-    });
-
-    expect(global.fetch.mock.calls[0][1].method).toBe('POST');
-
-    const body = JSON.parse(global.fetch.mock.calls[0][1].body);
-    expect(body.start).toBe(1609486200000);
-    expect(body.end).toBe(1609493400000);
-    expect(body.project).toBe('arbeiten');
-
-    const result = await screen.getAllByTestId('project');
-    expect(result).toHaveLength(3);
   });
 
   it('should edit an existing entry', async () => {
@@ -247,13 +184,15 @@ describe('BookingsList', () => {
             },
           ]);
         },
-      }),
+      })
     );
     await act(async () => {
       render(
-        <BookingsProvider>
-          <BookingsList />
-        </BookingsProvider>,
+        <BrowserRouter>
+          <BookingsProvider>
+            <BookingsList />
+          </BookingsProvider>
+        </BrowserRouter>
       );
     });
 
@@ -278,7 +217,7 @@ describe('BookingsList', () => {
             project: 'Was essen',
           });
         },
-      }),
+      })
     );
 
     await act(async () => {
@@ -294,7 +233,7 @@ describe('BookingsList', () => {
     expect(body.project).toBe('Was essen');
 
     expect(await screen.getAllByTestId('project')[1]).toHaveTextContent(
-      'Was essen',
+      'Was essen'
     );
   });
 });

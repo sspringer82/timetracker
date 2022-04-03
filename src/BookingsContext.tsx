@@ -5,6 +5,7 @@ import {
   Dispatch,
   SetStateAction,
   ReactElement,
+  useEffect,
 } from 'react';
 import { Booking } from './Booking';
 
@@ -34,7 +35,7 @@ export const BookingsProvider = (props: {
     <BookingsContext.Provider
       value={{
         bookings: bookings.filter((booking) =>
-          booking.project.includes(filter),
+          booking.project.includes(filter)
         ),
         setBookings,
         filter,

@@ -25,7 +25,7 @@ const BookingsList = (): React.ReactElement => {
             setEditMode={setEditMode}
           />
         ))}
-      <Form onSave={handleSave} />
+      
     </>
   );
 };

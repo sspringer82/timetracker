@@ -5,6 +5,7 @@ import {
   render,
   screen,
 } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import Form from './Form';
 
 describe('Form', () => {
@@ -12,7 +13,11 @@ describe('Form', () => {
     const onSave = jest.fn();
 
     await act(async () => {
-      await render(<Form onSave={onSave} />);
+      await render(
+        <MemoryRouter>
+          <Form onSave={onSave} />
+        </MemoryRouter>
+      );
     });
 
     await act(async () => {
@@ -54,7 +59,11 @@ describe('Form', () => {
     };
 
     await act(async () => {
-      await render(<Form onSave={onSave} booking={existing} />);
+      await render(
+        <MemoryRouter>
+          <Form onSave={onSave} booking={existing} />
+        </MemoryRouter>
+      );
     });
 
     await act(async () => {
@@ -80,7 +89,11 @@ describe('Form', () => {
     const onSave = jest.fn();
 
     await act(async () => {
-      await render(<Form onSave={onSave} />);
+      await render(
+        <MemoryRouter>
+          <Form onSave={onSave} />
+        </MemoryRouter>
+      );
     });
 
     await act(async () => {
@@ -102,10 +115,10 @@ describe('Form', () => {
 
     expect(onSave).not.toHaveBeenCalled();
     expect(
-      await screen.findByText('Ende darf nicht vor Start liegen'),
+      await screen.findByText('Ende darf nicht vor Start liegen')
     ).toBeInTheDocument();
     expect(
-      await screen.findByText('Projekt ist ein Pflichtfeld'),
+      await screen.findByText('Projekt ist ein Pflichtfeld')
     ).toBeInTheDocument();
   });
 });

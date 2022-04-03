@@ -6,10 +6,12 @@ import {
   ErrorMessage,
 } from 'formik';
 import * as Yup from 'yup';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { format } from 'date-fns';
-import { ReactElement } from 'react';
+import { ReactElement, useContext, useEffect } from 'react';
 import { Booking, InputBooking } from '../Booking';
+import { BookingsContext } from '../BookingsContext';
 
 type Props = {
   booking?: Booking;
@@ -48,9 +50,17 @@ function getInitialValues(booking?: Booking): FormValues {
 }
 
 const Form = ({ booking, onSave }: Props): ReactElement => {
+  const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
+  const { bookings } = useContext(BookingsContext);
+  if (id) {
+    const parsedId = parseInt(id, 10);
+    booking = bookings.find((b) => b.id === parsedId);
+  }
+
   function handleSubmit(
     values: FormValues,
-    { setSubmitting, resetForm }: FormikHelpers<FormValues>,
+    { setSubmitting, resetForm }: FormikHelpers<FormValues>
   ) {
     const submittedBooking: InputBooking = {
       start: new Date(values.start).getTime(),
@@ -63,6 +73,7 @@ const Form = ({ booking, onSave }: Props): ReactElement => {
     onSave(submittedBooking);
     setSubmitting(false);
     resetForm();
+    navigate('/');
   }
 
   return (
