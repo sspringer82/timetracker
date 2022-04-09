@@ -45,7 +45,7 @@ const DailyBookings = ({
           setEditMode={setEditMode}
         />
       ))}
-      <div data-testid="daily-sum" style={{fontWeight: 'bold', color}}>
+      <div data-testid="daily-sum" style={{ fontWeight: 'bold', color }}>
         Summe: <span data-testid="sum">{format(sum, 'HH:mm')}</span>
       </div>
     </div>

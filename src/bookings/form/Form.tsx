@@ -12,6 +12,8 @@ import { format } from 'date-fns';
 import { ReactElement, useContext, useEffect } from 'react';
 import { Booking, InputBooking } from '../Booking';
 import { BookingsContext } from '../BookingsContext';
+import { useAppDispatch } from '../../hooks';
+import { saveBooking } from '../bookingsSlice';
 
 type Props = {
   booking?: Booking;
@@ -50,6 +52,7 @@ function getInitialValues(booking?: Booking): FormValues {
 }
 
 const Form = ({ booking, onSave }: Props): ReactElement => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const { bookings } = useContext(BookingsContext);
@@ -70,6 +73,7 @@ const Form = ({ booking, onSave }: Props): ReactElement => {
     if (booking && booking.id) {
       submittedBooking.id = booking.id;
     }
+    dispatch(saveBooking(submittedBooking));
     onSave(submittedBooking);
     setSubmitting(false);
     resetForm();

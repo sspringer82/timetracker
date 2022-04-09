@@ -5,13 +5,13 @@ import { BookingsContext } from '../BookingsContext';
 
 export default function useBookingsList() {
   const { bookings, setBookings, setFilter } = useContext(BookingsContext);
-
+  /*
   useEffect(() => {
     fetch('http://localhost:3001/bookings')
       .then((response) => response.json())
       .then((data) => setBookings(data));
   }, []);
-
+*/
   const filteredBookings: Record<string, Booking[]> = {};
   bookings.forEach((booking) => {
     const date = format(booking.start, 'yyyy-MM-dd');

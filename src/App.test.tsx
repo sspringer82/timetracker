@@ -8,8 +8,8 @@ import {
 import App from './App';
 import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import { act } from 'react-dom/test-utils';
-import { BookingsProvider } from './BookingsContext';
-import BookingsList from './list/BookingsList';
+import { BookingsProvider } from './bookings/BookingsContext';
+import BookingsList from './bookings/list/BookingsList';
 
 declare let global: any;
 

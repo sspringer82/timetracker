@@ -7,6 +7,8 @@ import { Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../../../hooks';
+import { removeBooking } from '../../bookingsSlice';
 
 type Props = {
   booking: Booking;
@@ -23,11 +25,12 @@ const BookingItem = ({
   editMode,
   setEditMode,
 }: Props): React.ReactElement => {
+  const dispatch = useAppDispatch();
+
   if (editMode === booking.id) {
     return (
       <Form
         onSave={async (booking: InputBooking) => {
-          await onSave(booking);
           setEditMode(null);
         }}
         booking={booking}
@@ -45,7 +48,7 @@ const BookingItem = ({
         <div className="buttons">
           <Button
             data-testid="delete-button"
-            onClick={() => onDelete(booking.id)}
+            onClick={() => dispatch(removeBooking(booking.id))}
             variant="contained"
             color="error"
             startIcon={<DeleteIcon />}

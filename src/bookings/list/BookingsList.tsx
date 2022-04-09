@@ -1,14 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { loadBookings, selectFilteredBookings } from '../bookingsSlice';
 import Form from '../form/Form';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { RootState } from '../../store';
 import DailyBookings from './DailyBookings';
 import Filter from './Filter';
 import useBookingsList from './useBookingsList';
 
 const BookingsList = (): React.ReactElement => {
-  const { filteredBookings, handleDelete, setFilter, handleSave } =
-    useBookingsList();
+  const filteredBookings = useAppSelector(selectFilteredBookings);
+
+  const { handleDelete, setFilter, handleSave } = useBookingsList();
 
   const [editMode, setEditMode] = useState<number | null>(null);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(loadBookings());
+  }, []);
 
   return (
     <>
@@ -25,7 +35,6 @@ const BookingsList = (): React.ReactElement => {
             setEditMode={setEditMode}
           />
         ))}
-      
     </>
   );
 };
