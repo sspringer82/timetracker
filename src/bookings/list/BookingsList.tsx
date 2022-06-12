@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { loadBookings, selectFilteredBookings } from '../bookingsSlice';
-import Form from '../form/Form';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { RootState } from '../../store';
 import DailyBookings from './DailyBookings';
 import Filter from './Filter';
 import useBookingsList from './useBookingsList';
@@ -18,7 +16,7 @@ const BookingsList = (): React.ReactElement => {
 
   useEffect(() => {
     dispatch(loadBookings());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

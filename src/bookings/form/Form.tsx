@@ -9,7 +9,7 @@ import * as Yup from 'yup';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { format } from 'date-fns';
-import { ReactElement, useContext, useEffect } from 'react';
+import { ReactElement, useContext } from 'react';
 import { Booking, InputBooking } from '../Booking';
 import { BookingsContext } from '../BookingsContext';
 import { useAppDispatch } from '../../hooks';

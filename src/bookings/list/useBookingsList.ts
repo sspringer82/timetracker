@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { Booking, InputBooking } from '../Booking';
 import { BookingsContext } from '../BookingsContext';
 

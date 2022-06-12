@@ -5,7 +5,6 @@ import {
   Dispatch,
   SetStateAction,
   ReactElement,
-  useEffect,
 } from 'react';
 import { Booking } from './Booking';
 
