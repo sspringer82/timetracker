@@ -8,6 +8,7 @@ import Form from './bookings/form/Form';
 import { Dialog } from '@mui/material';
 import { Provider } from 'react-redux';
 import { store } from './store';
+import LanguageSwitch from './LanguageSwitch';
 
 function App() {
   const { handleSave } = useBookingsList();
@@ -15,6 +16,7 @@ function App() {
   return (
     <Provider store={store}>
       <BookingsProvider>
+        <LanguageSwitch />
         <h1>Timetracker</h1>
         <Routes>
           <Route

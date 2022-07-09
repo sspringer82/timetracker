@@ -1,0 +1,5 @@
+{
+  "btn-title-delete": "delete",
+  "btn-title-edit": "edit",
+  "day-headline": "{value, date, short}"
+}

@@ -1,5 +1,6 @@
 import { format, getHours, getMinutes } from 'date-fns';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Booking, InputBooking } from '../Booking';
 import sumBookings from '../util/sumBookings';
 import BookingItem from './BookingItem/BookingItem';
@@ -28,12 +29,13 @@ const DailyBookings = ({
   } else if ((hours === 8 && minutes > 30) || (hours < 8 && minutes < 30)) {
     color = 'orange';
   }
+  const { t } = useTranslation();
   return (
     <div>
       <h1 data-testid="day">
         {bookings[0] &&
           bookings[0].start &&
-          format(bookings[0].start, 'dd.MM.yyyy')}
+          t('day-headline', { value: bookings[0].start })}
       </h1>
       {bookings.map((booking) => (
         <BookingItem

@@ -9,6 +9,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../../hooks';
 import { removeBooking } from '../../bookingsSlice';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   booking: Booking;
@@ -25,6 +26,7 @@ const BookingItem = ({
   editMode,
   setEditMode,
 }: Props): React.ReactElement => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
   if (editMode === booking.id) {
@@ -53,7 +55,7 @@ const BookingItem = ({
             color="error"
             startIcon={<DeleteIcon />}
           >
-            löschen
+            {t('btn-title-delete')}
           </Button>
           <Button
             data-testid={`edit-button-${booking.id}`}
@@ -62,7 +64,7 @@ const BookingItem = ({
             color="primary"
             startIcon={<EditIcon />}
           >
-            bearbeiten
+            {t('btn-title-edit')}
           </Button>
           <Link
             to={`/edit/${booking.id}`}
